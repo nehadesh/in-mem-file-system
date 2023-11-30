@@ -1,1 +1,69 @@
-# in-mem-file-system
+# File System
+
+An in-memory filesystem built in Python! This is a simplified file system that supports storing both files and
+directories in-memory. The UI is a terminal interface through which a user can input familiar file system commands to create/read/update/delete files and directories.
+
+### Implementation Details
+
+I chose to use a sorted key tree structure to store the file system.
+
+- Offers quick access to access/modify/delete children of a directory
+- One can iterate/ access keys sorted by default - rather than needing to sort before returning output.
+
+The main entities or relevant classes include:
+
+- **FileSystem**: The overall wrapper around the tree structure, that keeps track of the pwd, and the root of the tree.
+- **Directory**: A node in the tree structure that can have multiple child directories. Each directory can also store multiple files. This is implemented by storing two dictionaries (with sorted keys) on each Directory. One for files, and one for directories. One can navigate, lookup and modify child directories quickly with this HashMap tree structure. Directories also maintain links to the parent so one can traverse back up the tree easily.
+- **File**: A file stores string content and is nested within one of the directory nodes in the tree. It can be read from, written to and moved around within the file system.
+- **CommandCenter**: This class handles functional execution and manipulation of the overall file system. It also handles error handling, command evaluation, and command validation.
+
+### Implementation Choices
+
+- Resolving naming conflicts when moving or adding files/directories - recursively add "\_copy" to the name of the file / directory until it is unique
+- Path to pwd is a calculated field that updates whenever the parent changes
+
+## Command Implementation
+
+- `mkdir` [Create a directory]
+  - Usage: `mkdir <directory_name>`
+  - Example: `mkdir folder` - Creates a directory called "folder" in the current directory (initially root)
+  - Implementation: Adds a child directory to the sorted dictionary by name for the current directory.
+- `cd` [Change current directory]
+  - Usage: `cd <directory_name>`
+  - Example: `cd folder`, `cd ..`, `cd .`, `cd ~`
+- `pwd` [Path to current directory]
+  - Usage: `pwd`
+- `ls` [List files and directories in pwd]
+  - Usage: `ls`
+- `rmdir` [Delete directory in pwd]
+  - Usage: `rmdir <directory_name>`
+  - Example: `rmdir folder`
+- `rm` [Delete file in pwd]
+  - Usage: `rm <file_name>`
+  - Example: `rm hello.txt`
+- `touch` [Create a file in pwd]
+  - Usage: `touch <file_name>`
+  - Example: `touch hello.txt`
+- `write` [Write to/ create file in pwd with content]
+  - Usage:
+- `read` [Output file contents to terminal]
+- `find` [Outputs files/directories that match the search input]
+- `mv` [Moves files/directories from current directory to specified child directory]
+- `explore` [Pretty print the file system tree from the current working directory onwards]
+
+## Setup Instructions
+
+Open up a terminal window.
+
+1. Do you have python installed? `python --version`.
+
+- No? Install python on your local machine `brew install python`
+- I used Python 3.9.6 for this project
+
+2. Create a virtual environment to install requirements in `python3 -m venv file_system_venv`
+
+3. Activate the virtual environment `source file_system_venv/bin/activate`
+
+4. Install requirements `pip install -r requirements.txt`
+
+5. Run the program `python3 src/main.py`
