@@ -3,7 +3,7 @@
 An in-memory filesystem built in Python! This is a simplified file system that supports storing both files and
 directories in-memory. The UI is a terminal interface through which a user can input familiar file system commands to create/read/update/delete files and directories.
 
-### Implementation Details
+## Implementation Details
 
 I chose to use a sorted key tree structure to store the file system.
 
@@ -45,17 +45,25 @@ The main entities or relevant classes include:
   - Usage: `touch <file_name>`
   - Example: `touch hello.txt`
 - `write` [Write to/ create file in pwd with content]
-  - Usage:
+  - Usage: `write <file_name>.txt "<content>"`
+  - Example: `write hello.txt "hello world"`
 - `read` [Output file contents to terminal]
+  - Usage: `read <file_name>.txt`
+  - Example: `read hello.txt`
 - `find` [Outputs files/directories that match the search input]
+  - Usage: `find <file_name>.txt` or `find <directory_name>`
+  - Example: `find hello.txt` or `find folder`
 - `mv` [Moves files/directories from current directory to specified child directory]
+  - Usage: `mv <file_name>.txt <dir_name>` or `mv <directory_name> <dir_name>`
+  - Example: `mv hello.txt folder` or `mv folder another_folder`
 - `explore` [Pretty print the file system tree from the current working directory onwards]
+  - Usage: `explore`
 
 ## Setup Instructions
 
-Open up a terminal window.
+Open up a terminal window. Clone this repository and navigate into the repo.
 
-1. Do you have python installed? `python --version`.
+1. Do you have python3 installed? `python3 --version`.
 
 - No? Install python on your local machine `brew install python`
 - I used Python 3.9.6 for this project
