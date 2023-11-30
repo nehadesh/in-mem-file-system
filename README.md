@@ -77,7 +77,7 @@ The main entities or relevant classes include:
   - Usage: `explore`
 
 ## Future Improvements
-
+- More unit testing. Because I timeboxed this - I ended up skipping on writing unit tests for some classes. This is not acceptable for production-level code.
 - It wouldn't be hard to add absolute paths and operate on those.
   - We could traverse the file system tree one folder in the path at a time until a part of the path is not found/ until we reach the folder/file we're looking for.
   - If we return a reference to the file it would be easy to operate on it. For example we could `cd` into an absolute path to a folder by changing the `pwd` to point to it.
