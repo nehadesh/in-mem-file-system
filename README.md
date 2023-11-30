@@ -3,6 +3,23 @@
 An in-memory filesystem built in Python! This is a simplified file system that supports storing both files and
 directories in-memory. The UI is a terminal interface through which a user can input familiar file system commands to create/read/update/delete files and directories.
 
+## Setup Instructions
+
+Open up a terminal window. Clone this repository and navigate into the repo.
+
+1. Do you have python3 installed? `python3 --version`.
+
+- No? Install python on your local machine `brew install python`
+- I used Python 3.9.6 for this project
+
+2. Create a virtual environment to install requirements in `python3 -m venv file_system_venv`
+
+3. Activate the virtual environment `source file_system_venv/bin/activate`
+
+4. Install requirements `pip install -r requirements.txt`
+
+5. Run the program `python3 src/main.py`
+
 ## Implementation Details
 
 I chose to use a sorted key tree structure to store the file system.
@@ -59,19 +76,9 @@ The main entities or relevant classes include:
 - `explore` [Pretty print the file system tree from the current working directory onwards]
   - Usage: `explore`
 
-## Setup Instructions
+## Future Improvements
 
-Open up a terminal window. Clone this repository and navigate into the repo.
-
-1. Do you have python3 installed? `python3 --version`.
-
-- No? Install python on your local machine `brew install python`
-- I used Python 3.9.6 for this project
-
-2. Create a virtual environment to install requirements in `python3 -m venv file_system_venv`
-
-3. Activate the virtual environment `source file_system_venv/bin/activate`
-
-4. Install requirements `pip install -r requirements.txt`
-
-5. Run the program `python3 src/main.py`
+- It wouldn't be hard to add absolute paths and operate on those.
+  - We could traverse the file system tree one folder in the path at a time until a part of the path is not found/ until we reach the folder/file we're looking for.
+  - If we return a reference to the file it would be easy to operate on it. For example we could `cd` into an absolute path to a folder by changing the `pwd` to point to it.
+- User auth rules would also be relatively easy to add. We could assume a set of auth rules by default (read-only) and then for each file or directory we could add a map for user auth rules. Lookup by username before we let users write to file/ read from file for specific permissions.
